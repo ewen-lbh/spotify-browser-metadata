@@ -35,7 +35,7 @@ let state = {
 	repeat: false,
 	loop: false,
 	shuffle: false,
-	heart: false,
+	liked: false,
 	artist: "",
 	title: "",
 	playing: false,
@@ -66,7 +66,7 @@ function updateState(mutations) {
 	previousState = JSON.parse(JSON.stringify(state))
 	state.repeat = getElementByTestID("control-button-repeat")?.getAttribute('aria-checked') !== "false";
 	state.loop =  getElementByTestID("control-button-repeat")?.getAttribute('aria-checked') === "mixed";
-	state.heart = document.querySelector('.control-button-heart button')?.getAttribute('aria-checked') === "true";
+	state.liked = document.querySelector('.control-button-liked button')?.getAttribute('aria-checked') === "true";
 	state.shuffle = getElementByTestID("control-button-shuffle")?.getAttribute('aria-checked') === "true";
 	state.artist = getElementByTestID("track-info-artists")?.innerText;
 	state.title = getElementByTestID("nowplaying-track-link")?.text;
