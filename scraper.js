@@ -1,10 +1,19 @@
 // ==UserScript==
 // @name Spotify Browser Metadata -- Scraper userscript
-// @namespace https://open.spotify.com
+// @namespace https://openuserjs.org/users/ewen-lbh
 // @description Sends a GET request to notify a server of playback state changes
 // @include https://open.spotify.com/*
-// @author ewen-lbh <hey@ewen.works>
+// @copyright 2021, Ewen Le Bihan (https://ewen.works)
+// @license MIT
+// @version 0.0.1
+// @homepageURL https://github.com/ewen-lbh/spotify-browser-metadata-script
+// @contributionURL https://github.com/ewen-lbh/spotify-browser-metadata-script
+// @supportURL https://github.com/ewen-lbh/spotify-browser-metadata-script/issues
 // ==/UserScript==
+//
+// ==OpenUserJS==
+// @author ewen-lbh
+// ==/OpenUserJS==
 
 const PORT = 8887 // <---- PUT YOUR PORT HERE
 const HOST = "localhost" // <--- PUT THE HOST HERE (you probably won't need to modify this)
