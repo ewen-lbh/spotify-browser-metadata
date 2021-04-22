@@ -6,6 +6,7 @@
 - Does not use Spotify's Web API, so you are not subject to rate-limiting
 - It relies on the web page, so the playback does not have to actually happen on the device running the script
   (i.e. it works fine when playing remotely with Spotify Connect)
+- It's pretty dang fast. This is because it reacts as soon as the UI changes, using `MutationObserver`, and the HTTP traffic does not exit the machine (except if you use an actual IP for `HOST` instead of `localhost`)
 - It provides the following information on the current track:
   - The artist(s) (`artist`) (,-separated)
   - The track's name (`title`)
