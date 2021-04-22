@@ -52,7 +52,7 @@ Then, you can use that file anywhere to, for example, display it in your status 
 #### Firefox & Chromium derivatives (Chrome, Brave, Opera, Edge,…)
 
 1. Install the Greasemonkey extension/addon through the store
-1. Install the userscript with OpenUserJS at (need to push before publishing to OpenUserJS)
+1. Install the userscript with OpenUserJS at <https://openuserjs.org/scripts/ewen-lbh/Spotify_Browser_Metadata_--_Scraper_userscript>
 
 #### Qutebrowser
 
