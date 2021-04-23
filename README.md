@@ -1,8 +1,11 @@
 # Spotify Browser Metadata Script
 
-[![Demo thumbnail "Click to view the video"](./demo-thumbnail.jpeg)](./demo.mp4)
 
 > Continuously extract metadata in real-time from a open.spotify.com page to a file with a custom Python format string
+
+_Click to view the video_
+
+[![Demo thumbnail "Click to view the video"](./demo-thumbnail.jpeg)](https://youtu.be/5gj75iRvgH8)
 
 ## Features
 - Does not use Spotify's Web API, so you are not subject to rate-limiting
