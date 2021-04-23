@@ -48,7 +48,7 @@ Then, you can use that file anywhere to, for example, display it in your status 
 
 ## Installation
 
-### The userscript (`scraper.js`)
+### The userscript (`scraper.user.js`)
 
 #### Firefox & Chromium derivatives (Chrome, Brave, Opera, Edge,…)
 
@@ -57,7 +57,7 @@ Then, you can use that file anywhere to, for example, display it in your status 
 
 #### Qutebrowser
 
-Place `scraper.js` in `~/.config/qutebrowser/greasemonkey/`
+Place `scraper.user.js` in `~/.config/qutebrowser/greasemonkey/`
 
 ### The receiver (`receiver.py`)
 
@@ -68,7 +68,7 @@ If you ever want to reload it, be sure to terminate all previous instances, it c
 ## Configuration
 
 Be sure to select a port that will be free.
-Specify that port in `scraper.js` by modifying `PORT` at the top:
+Specify that port in `scraper.user.js` by modifying `PORT` at the top:
 
 ```javascript
 // ==UserScript==
@@ -89,8 +89,8 @@ The server takes four arguments:
 python receiver.py HOST PORT FORMAT_STRING OUTPUT_FILEPATH
 ```
 
-- `PORT`: Use the same port as `scraper.js`'s
-- `HOST`: Use the same hostname as `scraper.js`'s (probably "localhost")
+- `PORT`: Use the same port as `scraper.user.js`'s
+- `HOST`: Use the same hostname as `scraper.user.js`'s (probably "localhost")
 - `FORMAT_STRING`: A python f-string, without the `f"` at the start nor the `"` at the end. 
   Allowed variables are the ones described in [Features](#features).
   Note that `receiver.py` quotes your f-string with single quotes. 
