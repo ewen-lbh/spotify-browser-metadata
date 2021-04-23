@@ -13,6 +13,7 @@ def resolve_parsed_qs(parsed_qs):
     Returns a dict that is identical to parse_qs from urllib.parse, except that:
 
     - 'true' and 'false' become resp. True and False
+    - 'undefined' becomes None
     - lists of one element are converted to their only element
     """
     def value(v):
@@ -22,6 +23,8 @@ def resolve_parsed_qs(parsed_qs):
             return True
         if v == "false":
             return False
+        if v == "undefined":
+            return None
         return v
     return { k: value(v) for k, v in parsed_qs.items() } 
 
