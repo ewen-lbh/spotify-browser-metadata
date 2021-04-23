@@ -9,6 +9,8 @@
 // @homepageURL https://github.com/ewen-lbh/spotify-browser-metadata-script
 // @contributionURL https://github.com/ewen-lbh/spotify-browser-metadata-script
 // @supportURL https://github.com/ewen-lbh/spotify-browser-metadata-script/issues
+// @updateURL https://raw.githubusercontent.com/ewen-lbh/spotify-browser-metadata-script/master/scraper.user.js
+// @downloadURL https://raw.githubusercontent.com/ewen-lbh/spotify-browser-metadata-script/master/scraper.user.js
 // ==/UserScript==
 //
 // ==OpenUserJS==
