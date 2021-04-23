@@ -13,7 +13,7 @@
   - If it was liked (`liked`)
   - If we are in shuffle mode (`shuffle`)
   - If we are looping ('repeat current track', i.e. a loop icon with a 1 in the UI) (`loop`)
-  - If we are repeating (repeating the current album/playlist/whatever) (`repeat`)
+  - If we are repeating (repeating the current album/playlist/whatever) (`repeat`) (`loop` implies `repeat`, but not the other way around)
   - If the track is playing right now (`playing`)
 - You format your string using [Python f-strings](https://realpython.com/python-f-strings), so you can do pretty much anything (even execute remote code, technically).
 
