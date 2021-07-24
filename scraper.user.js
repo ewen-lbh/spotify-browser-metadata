@@ -70,8 +70,8 @@ function updateState(mutations) {
 	state.loop =  getElementByTestID("control-button-repeat")?.getAttribute('aria-checked') === "mixed";
 	state.liked = document.querySelector('.control-button-heart button')?.getAttribute('aria-checked') === "true";
 	state.shuffle = getElementByTestID("control-button-shuffle")?.getAttribute('aria-checked') === "true";
-	state.artist = getElementByTestID("track-info-artists")?.innerText;
-	state.title = getElementByTestID("nowplaying-track-link")?.text;
+	state.artist = getElementByTestID("context-item-info-subtitles")?.innerText;
+	state.title = getElementByTestID("context-item-link")?.text;
 	state.playing = document.querySelector('.player-controls__buttons').querySelectorAll('[aria-label="Pause"]').length > 0;
 	// Don't send the exact same data again
 	// This won't work on browsers where JSON.stringify does not guarantee
