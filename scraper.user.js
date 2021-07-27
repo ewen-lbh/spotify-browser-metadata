@@ -68,7 +68,7 @@ function updateState(mutations) {
 	previousState = JSON.parse(JSON.stringify(state))
 	state.repeat = getElementByTestID("control-button-repeat")?.getAttribute('aria-checked') !== "false";
 	state.loop =  getElementByTestID("control-button-repeat")?.getAttribute('aria-checked') === "mixed";
-	state.liked = document.querySelector('.control-button-heart button')?.getAttribute('aria-checked') === "true";
+	state.liked = document.querySelector('button.control-button-heart')?.getAttribute('aria-checked') === "true";
 	state.shuffle = getElementByTestID("control-button-shuffle")?.getAttribute('aria-checked') === "true";
 	state.artist = getElementByTestID("context-item-info-subtitles")?.innerText;
 	state.title = getElementByTestID("context-item-link")?.text;
