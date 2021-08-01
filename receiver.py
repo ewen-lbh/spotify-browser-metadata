@@ -47,8 +47,10 @@ class SpotifyReceiver(BaseHTTPRequestHandler):
     def do_GET(self):
         _, qs = self.path.split('?')
         data = resolve_parsed_qs(parse_qs(qs, keep_blank_values=True))
-        os.system('clear')
-        evaluated_format_string = eval(f"(lambda {', '.join(data.keys())}: f'{format_string}')(" + ", ".join(f"data[{key!r}]" for key in data)  + ")")
+        if data.get('title') is None and data.get('artist') is None:
+            evaluated_format_string = ""
+        else:
+            evaluated_format_string = eval(f"(lambda {', '.join(data.keys())}: f'{format_string}')(" + ", ".join(f"data[{key!r}]" for key in data)  + ")")
         Path(output_filepath).expanduser().write_text(evaluated_format_string, encoding="utf8")
         self.send_response(200)
         self.send_header("Access-Control-Allow-Origin", "*")
