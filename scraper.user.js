@@ -60,6 +60,12 @@ function stateToQuerystring(obj) {
 	return "?" + str.join("&");
 }
 
+function durationStringToSeconds(durationString) {
+	let [minutes, seconds] = durationString.split(':')
+	return parseInt(seconds) + 60 * parseInt(minutes)
+
+}
+
 function updateState(mutations) {
 	if (mutations.every(mut => mut.target.className.includes('progress-bar'))) {
 		// Don't send a request when time advances but nothing else.
@@ -73,6 +79,8 @@ function updateState(mutations) {
 	state.artist = getElementByTestID("context-item-info-subtitles")?.innerText;
 	state.title = getElementByTestID("context-item-link")?.text;
 	state.playing = document.querySelector('.player-controls__buttons').querySelectorAll('[aria-label="Pause"]').length > 0;
+	state.elapsed = durationStringToSeconds(getElementByTestID("playback-position")?.textContent)
+	state.duration = durationStringToSeconds(getElementByTestID("playback-duration")?.textContent)
 	// Don't send the exact same data again
 	// This won't work on browsers where JSON.stringify does not guarantee
 	// object key order.

@@ -25,6 +25,10 @@ def resolve_parsed_qs(parsed_qs):
             return False
         if v == "undefined":
             return None
+        try:
+            v = int(v)
+        except ValueError:
+            v = str(v)
         return v
     return { k: value(v) for k, v in parsed_qs.items() } 
 
