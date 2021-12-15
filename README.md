@@ -1,6 +1,5 @@
 # Spotify Browser Metadata Script
 
-
 > Continuously extract metadata in real-time from a open.spotify.com page to a file with a custom Python format string
 
 _Click to view the video_
@@ -8,6 +7,7 @@ _Click to view the video_
 [![Demo thumbnail "Click to view the video"](./demo-thumbnail.jpeg)](https://youtu.be/5gj75iRvgH8)
 
 ## Features
+
 - Does not use Spotify's Web API, so you are not subject to rate-limiting
 - It relies on the web page, so the playback does not have to actually happen on the device running the script
   (i.e. it works fine when playing remotely with Spotify Connect)
@@ -21,7 +21,7 @@ _Click to view the video_
   - If we are repeating (repeating the current album/playlist/whatever) (`repeat`) (`loop` implies `repeat`, but not the other way around)
   - If the track is playing right now (`playing`)
   - The current playback position in seconds (`elapsed`)
-  - The total duration of the current track (`duration`)
+  - The total duration of the current track in seconds (`duration`)
 - You format your string using [Python f-strings](https://realpython.com/python-f-strings), so you can do pretty much anything (even execute remote code, technically).
 
 ## Caveats
@@ -34,19 +34,20 @@ _Click to view the video_
 - You format your strings using [Python f-strings](https://realpython.com/python-f-strings), so there are some annoying gotchas, like:
   - You can't use backlashes (so no escape sequences) inside an `{expression}` (a workaround: use `chr(92)`. Yeah, it ain't pretty. You could also use a visually similar character like set minus `∖` instead. For escape sequences, you could also use `chr`. Use `ord` in a Python shell to get the desired escape sequence's number.)
   - You can't use single quotes inside an `{expression}` (a workaround: use single quotation marks `‘` or `’` instead of an apostrophe `'`)
-    
 
 ## How it works
 
 This is made of two parts:
 
 - A client userscript that injects itself in any `open.spotify.com` page:
+  
   1. It listens to DOM changes in the Spotify player controls bar at the bottom of the page
   2. When anything interesting changes:
      1. It extracts information from the DOM into a status object
-     1. It sends a GET HTTP request to `localhost:8887` (the port can be changed by editing the userscript), transmitting the status object via query parameters
+     2. It sends a GET HTTP request to `localhost:8887` (the port can be changed by editing the userscript), transmitting the status object via query parameters
 
 - A server that receives status updates
+  
   1. It listens for requests to the provided host and port
   2. When a request arrives, it uses the provided f-string to render a status text
   3. That status text is written to a file at the provided location
@@ -60,7 +61,7 @@ Then, you can use that file anywhere to, for example, display it in your status 
 #### Firefox & Chromium derivatives (Chrome, Brave, Opera, Edge,…)
 
 1. Install the Greasemonkey extension/addon through the store
-1. Install the userscript with OpenUserJS at <https://openuserjs.org/scripts/ewen-lbh/Spotify_Browser_Metadata_--_Scraper_userscript>
+2. Install the userscript with OpenUserJS at <https://openuserjs.org/scripts/ewen-lbh/Spotify_Browser_Metadata_--_Scraper_userscript>
 
 #### Qutebrowser
 
@@ -104,6 +105,8 @@ python receiver.py HOST PORT FORMAT_STRING OUTPUT_FILEPATH
   This is to be consistent with how you'll pass the string to your shell, since you'll probably use single quotes too to avoid having to escape backslashes twice, for example.
   This means that you'll have to escape single quotes inside the format string.
   A small function is available for convenience: `i(text, boolean)`, which outputs `text` if `boolean` is True and `""` otherwise.
+  
+  There is also `duration_string(seconds)`, which returns a _hours:minutes'seconds"_ string from a number of seconds (The _hours:_ part is omitted if `seconds` < 3600)
 - `OUTPUT_FILEPATH`: A filepath to write the evaluated `FORMAT_STRING` (i.e. the output) to.
   The filepath's parent directory must exist before running the script.
   `~` and `~user` constructs are handled, using [`pathlib.Path.expanduser`](https://docs.python.org/3/library/pathlib.html#pathlib.Path.expanduser)
