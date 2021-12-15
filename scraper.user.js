@@ -61,8 +61,8 @@ function stateToQuerystring(obj) {
 }
 
 function durationStringToSeconds(durationString) {
-	let [minutes, seconds] = durationString.split(':')
-	return parseInt(seconds) + 60 * parseInt(minutes)
+	let [seconds, minutes, hours] = durationString.split(':').reverse()
+	return parseInt(seconds) + 60 * parseInt(minutes) + 3600 * (hours === undefined ? 0 : parseInt(hours))
 
 }
 

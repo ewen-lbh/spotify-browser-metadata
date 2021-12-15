@@ -38,6 +38,24 @@ def resolve_parsed_qs(parsed_qs):
 def i(text, value):
     return text if value else ""
 
+# Cuts up a number by dividing it successively, returning len(divisors)+1 arguments (last is the rest of the last division)
+def divmod_n(amount: int, *divisors: int) -> list[int]:
+    divided = []
+    for divisor in divisors:
+        result, rest = divmod(amount, divisor)
+        divided.append(result)
+        amount = rest
+    return divided + [rest]
+
+# Turns an amount of seconds into a duration string, using hours:minutes'seconds" notation
+def duration_string(seconds: int) -> str:
+    print(f"turning {seconds} into a duration string")
+    hours, minutes, seconds = divmod_n(seconds, 3600, 60)
+    if not hours:
+        return f"{minutes}'{seconds}\""
+    return f"{hours}:{minutes}'{seconds}\""
+
+
 # TODO: a better syntax, make this work:
 # $ python spotfify-metadata-receiver.py localhost 8888 '{♥ :heart?}{↦ :!repeat?}{artist}: {title}'
 # instead of using '{i("♥ ", heart)}{i("↦ ", not repeat)}{artist}: {title}'
