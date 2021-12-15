@@ -16,6 +16,7 @@ def resolve_parsed_qs(parsed_qs):
     - 'true' and 'false' become resp. True and False
     - 'undefined' becomes None
     - lists of one element are converted to their only element
+    - strings of numbers (such that calling int or float does not raise a ValueError) become either ints or floats
     """
     def value(v):
         if isinstance(v, list) and len(v) == 1:
@@ -29,7 +30,10 @@ def resolve_parsed_qs(parsed_qs):
         try:
             v = int(v)
         except ValueError:
-            v = str(v)
+            try:
+                v = float(v)
+            except ValueError:
+                v = str(v)
         return v
     return { k: value(v) for k, v in parsed_qs.items() } 
 
