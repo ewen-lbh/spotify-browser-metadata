@@ -56,8 +56,8 @@ def duration_string(seconds: int) -> str:
     print(f"turning {seconds} into a duration string")
     hours, minutes, seconds = divmod_n(seconds, 3600, 60)
     if not hours:
-        return f"{minutes}'{seconds}\""
-    return f"{hours}:{minutes}'{seconds}\""
+        return f"{minutes:02}'{seconds:02}\""
+    return f"{hours:02}:{minutes:02}'{seconds:02}\""
 
 
 # TODO: a better syntax, make this work:
