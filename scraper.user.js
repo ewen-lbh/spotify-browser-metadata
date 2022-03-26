@@ -90,13 +90,13 @@ function updateState(mutations) {
 	// when switching songs instead of one. what a big deal!
 	// I suspect it does nothing, performance-wise.
 	if (JSON.stringify(state) == JSON.stringify(previousState)) {
-		console.log('[spotify-browser-metadata-script] skipping push: state did not change since last push')
+		// console.log('[spotify-browser-metadata-script] skipping push: state did not change since last push')
 		return
 	}
 	let request = new XMLHttpRequest();
 	request.open("GET", `${PROTOCOL}://${HOST}:${PORT}/` + stateToQuerystring(state));
 	request.send();
-	console.log(`[spotify-browser-metadata-script] pushed state ${JSON.stringify(state)}`)
+	// console.log(`[spotify-browser-metadata-script] pushed state ${JSON.stringify(state)}`)
 }
 
 function startObserving() {
