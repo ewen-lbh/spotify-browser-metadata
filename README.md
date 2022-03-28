@@ -22,7 +22,8 @@ _Click to view the video_
   - If the track is playing right now (`playing`)
   - The current playback position in seconds (`elapsed`)
   - The total duration of the current track in seconds (`duration`)
-  - The upcoming lyric line (only works when the lyrics are open) (`lyric_line`)
+  - The upcoming lyrics line (only works when the lyrics are open) (`upcoming_lyric`)
+  - The current lyrics line (only works when the lyrics are open) (`current_lyric`)
 - You format your string using [Python f-strings](https://realpython.com/python-f-strings), so you can do pretty much anything (even execute remote code, technically).
 
 ## Caveats
