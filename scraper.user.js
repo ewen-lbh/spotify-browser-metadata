@@ -81,8 +81,28 @@ function updateState(mutations) {
 	state.playing = document.querySelector('.player-controls__buttons').querySelectorAll('[aria-label="Pause"]').length > 0;
 	state.elapsed = durationStringToSeconds(getElementByTestID("playback-position")?.textContent)
 	state.duration = durationStringToSeconds(getElementByTestID("playback-duration")?.textContent)
-	state.current_lyric  = document.querySelector('[style="--animation-index:1;"]')?.textContent || ""
-	state.upcoming_lyric  = document.querySelector('[style="--animation-index:2;"]')?.textContent || ""
+	state.current_lyric = ""
+	state.upcoming_lyric = ""
+	const transformLyric = lyric => lyric.replace(/x(\d+)/, ($0, $1) => `×${$1}`)
+	const lyricsContainer = document.querySelector('main > [style*=lyrics]')
+	if (lyricsContainer) {
+		const activeLyricColor = getComputedStyle(lyricsContainer).getPropertyValue('--lyrics-color-active')
+		for (const lyricElement of document.querySelectorAll('main > [style*=lyrics] div[dir=auto]')) {
+			if (getComputedStyle(lyricElement).getPropertyValue('color') === activeLyricColor && getComputedStyle(lyricElement).getPropertyValue('opacity') === '1') {
+				state.current_lyric = transformLyric(lyricElement?.textContent || "")
+				state.upcoming_lyric = transformLyric(lyricElement?.nextSibling.textContent || "")
+				break
+			}
+		}
+		if (state.current_lyric === "") {
+			for (const lyricElement of document.querySelectorAll('main > [style*=lyrics] div[dir=auto]')) {
+				if (lyricElement?.textContent) {
+					state.upcoming_lyric = transformLyric(lyricElement?.textContent || "")
+					break
+				}
+			}
+		}
+	}
 	// Don't send the exact same data again
 	// This won't work on browsers where JSON.stringify does not guarantee
 	// object key order.
@@ -113,9 +133,10 @@ function startObserving() {
 		subtree: true,
 		characterData: true,
 	});
-	observer.observe(document.querySelector('[style*=lyrics]'), {
-		characterData: true,
+	// should observe if the lyrics are open and observe the lyrics container when it exists instead
+	observer.observe(document.querySelector("main"), {
 		subtree: true,
+		characterData: true,
 	});
 }
 
