@@ -85,7 +85,7 @@ function updateState(mutations) {
 	state.upcoming_lyric = ""
 	const transformLyric = lyric => lyric.replace(/x(\d+)/, ($0, $1) => `×${$1}`)
 	const lyricsContainer = document.querySelector('main > [style*=lyrics]')
-	if (lyricsContainer) {
+	if (lyricsContainer && !lyricsContainer.querySelector('p')?.innerText?.includes('sync')) {
 		const activeLyricColor = getComputedStyle(lyricsContainer).getPropertyValue('--lyrics-color-active')
 		for (const lyricElement of document.querySelectorAll('main > [style*=lyrics] div[dir=auto]')) {
 			if (getComputedStyle(lyricElement).getPropertyValue('color') === activeLyricColor && getComputedStyle(lyricElement).getPropertyValue('opacity') === '1') {
