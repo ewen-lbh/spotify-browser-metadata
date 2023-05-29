@@ -72,6 +72,7 @@ function updateState(mutations) {
 		return
 	}
 	previousState = JSON.parse(JSON.stringify(state))
+
 	state.repeat = getElementByTestID("control-button-repeat")?.getAttribute('aria-checked') !== "false";
 	state.loop =  getElementByTestID("control-button-repeat")?.getAttribute('aria-checked') === "mixed";
 	state.liked = document.querySelector('button.control-button-heart')?.getAttribute('aria-checked') === "true";
@@ -122,7 +123,7 @@ function updateState(mutations) {
 function startObserving() {
 	console.log('[spotify-browser-metadata-script] starting observers')
 	const observer = new MutationObserver(updateState);
-	observer.observe(document.querySelector('.Root__now-playing-bar'), {
+	observer.observe(getElementByTestID('now-playing-bar'), {
 		attributesFilter: ["aria-checked", "aria-label"],
 		attributes: true,
 		// childList: true,
