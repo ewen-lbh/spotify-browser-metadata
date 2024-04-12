@@ -6,6 +6,12 @@ _Click to view the video_
 
 [![Demo thumbnail "Click to view the video"](./demo-thumbnail.jpeg)](https://youtu.be/5gj75iRvgH8)
 
+
+> [!NOTE]
+> New! This scripts now works on the Desktop Spotify Client, thanks to [Spicetify](https://spicetify.app)! 
+> You just have to install the scraper.user.js file as an extension, see [the documentation](https://spicetify.app/docs/advanced-usage/extensions/#installing)
+
+
 ## Features
 
 - Does not use Spotify's Web API, so you are not subject to rate-limiting
